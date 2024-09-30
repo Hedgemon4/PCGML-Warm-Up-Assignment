@@ -5,7 +5,8 @@ numGamesPerMonster = (
     1000  # Using one thousand instead of one million discussed in Chapter 10
 )
 
-MAX_POINTS = 175
+MAX_POINTS = 100
+PRINT_MONSTER = False
 
 
 # Every state is a monster. Typically we would have a separate environment representation, but here the state encompasses all the info in the environment
@@ -109,19 +110,46 @@ def LowerDamage(monster):
         monsterClone.total_points += 1
     return monsterClone
 
+def BalancedMonster():
+    return State(50, 25, 25, 25)
 
-# Run one game of this monster against the 'balanced' monster
+def TankMonster():
+    return State(100, 50, 5, 10)
+
+def WeakMonster():
+    return State(1, 0, 0, 1)
+
+def GlassCannon():
+    return State(20, 0, 50, 50)
+
+# Run one game of this monster against an opponent monster
 def RunGame(monster):
-    balancedMonster = State(50, 25, 25, 25)
+    num = random.random()
+    if num < 0.25:
+        if PRINT_MONSTER:
+            print("Balanced Monster")
+        opponent_monster = BalancedMonster()
+    elif num < 0.5:
+        if PRINT_MONSTER:
+            print("Tank Monster")
+        opponent_monster = TankMonster()
+    elif num < 0.75:
+        if PRINT_MONSTER:
+            print("Weak Monster")
+        opponent_monster = WeakMonster()
+    else:
+        if PRINT_MONSTER:
+            print("GlassCannon")
+        opponent_monster = GlassCannon()
 
     monster1 = monster
-    monster2 = balancedMonster
+    monster2 = opponent_monster
 
     # Boolean for who goes first
-    balancedFirst = balancedMonster.speed > monster.speed
+    balancedFirst = opponent_monster.speed > monster.speed
 
     if balancedFirst:
-        monster1 = balancedMonster
+        monster1 = opponent_monster
         monster2 = monster
 
     # Include since it's possible to have a monster that can't kill balanced but can't be killed by balanced
@@ -173,4 +201,6 @@ def CalculateReward(monster):
             ties += 1.0
 
     winRate = float(wins) / float(numGamesPerMonster)
-    return (0.5 - abs(winRate - 0.5)) / 0.5
+    # Try adding a discount for not reaching the max number of points assigned
+    points_penalty = (1 - monster.total_points / MAX_POINTS)
+    return (0.5 - abs(winRate - 0.5)) / 0.5 - (points_penalty / 10)
