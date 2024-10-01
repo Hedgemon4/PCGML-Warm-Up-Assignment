@@ -5,7 +5,7 @@ numGamesPerMonster = (
     1000  # Using one thousand instead of one million discussed in Chapter 10
 )
 
-MAX_POINTS = 100
+MAX_POINTS = 125
 PRINT_MONSTER = False
 
 
@@ -110,17 +110,22 @@ def LowerDamage(monster):
         monsterClone.total_points += 1
     return monsterClone
 
+
 def BalancedMonster():
     return State(50, 25, 25, 25)
+
 
 def TankMonster():
     return State(100, 50, 5, 10)
 
+
 def WeakMonster():
     return State(1, 0, 0, 1)
 
+
 def GlassCannon():
     return State(20, 0, 50, 50)
+
 
 # Run one game of this monster against an opponent monster
 def RunGame(monster):
@@ -202,5 +207,5 @@ def CalculateReward(monster):
 
     winRate = float(wins) / float(numGamesPerMonster)
     # Try adding a discount for not reaching the max number of points assigned
-    points_penalty = (1 - monster.total_points / MAX_POINTS)
+    points_penalty = 1 - monster.total_points / MAX_POINTS
     return (0.5 - abs(winRate - 0.5)) / 0.5 - (points_penalty / 10)

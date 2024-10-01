@@ -10,7 +10,8 @@ from MDP import (
     RaiseDamage,
     LowerDamage,
     RunGame,
-    CalculateReward, MAX_POINTS,
+    CalculateReward,
+    MAX_POINTS,
 )
 import random, pickle
 
@@ -23,7 +24,14 @@ epsilon = 1  # how frequently to take the 'best' instead of random actions (incr
 epsilonDecay = 0.001  # how quickly to decrease epsilon (increase for faster convergence, decrease for more exploration)
 random.seed(1)  # Ensures a consistent training result
 output_file_folder = "qTables/variedOpponent/"
-output_file_name = "qTable_" + "maxPoints_" + str(MAX_POINTS) + "_total_episodes_" + str(totalEpisodes) + ".pickle"
+output_file_name = (
+    "qTable_"
+    + "maxPoints_"
+    + str(MAX_POINTS)
+    + "_total_episodes_"
+    + str(totalEpisodes)
+    + ".pickle"
+)
 
 # List of all actions in a string representation to make them easily hashable
 actions = [
