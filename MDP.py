@@ -1,5 +1,7 @@
 import random
 
+import torch
+
 # Hyperparameters
 numGamesPerMonster = (
     1000  # Using one thousand instead of one million discussed in Chapter 10
@@ -32,6 +34,12 @@ class State:
             + ", D: "
             + str(self.damage)
             + ")"
+        )
+
+    def get_tensor(self):
+        return torch.tensor(
+            [self.health, self.armor, self.speed, self.damage, self.total_points],
+            dtype=torch.float32,
         )
 
 
