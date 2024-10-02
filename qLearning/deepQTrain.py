@@ -1,11 +1,10 @@
 import math
 import random
-from itertools import count
 
 import torch
 from torch import nn
 
-from MDP import (
+from qTabular.MDP import (
     RandomState,
     RaiseHealth,
     LowerHealth,
@@ -16,6 +15,7 @@ from MDP import (
     RaiseDamage,
     LowerDamage,
     CalculateReward,
+    MAX_POINTS,
 )
 from ReplayMemory import ReplayMemory, Transition
 from qNetwork import QNetwork
@@ -29,7 +29,7 @@ EPS_END = 0.05
 EPS_DECAY = 1000
 TAU = 0.005
 LR = 1e-4
-NUM_EPISODES = 50
+NUM_EPISODES = 100
 MAX_ROLLOUT_LENGTH = 50
 
 n_actions = 8
@@ -147,3 +147,12 @@ for i in range(NUM_EPISODES):
             ] * TAU + target_net_state_dict[key] * (1 - TAU)
         target_network.load_state_dict(target_net_state_dict)
         rollout_index += 1
+
+save_file_name = (
+    "policy_net_max_points_"
+    + str(MAX_POINTS)
+    + "_total_episodes_"
+    + str(NUM_EPISODES)
+    + ".pth"
+)
+torch.save(policy_network.state_dict(), save_file_name)

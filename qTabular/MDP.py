@@ -7,7 +7,7 @@ numGamesPerMonster = (
     1000  # Using one thousand instead of one million discussed in Chapter 10
 )
 
-MAX_POINTS = 125
+MAX_POINTS = 100
 PRINT_MONSTER = False
 
 

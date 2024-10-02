@@ -15,8 +15,7 @@ from MDP import (
 import pickle, random
 
 # Hyperparameters
-# trainedQTableFile = open("qTables/withoutMaxPoints/qTable100modified.pickle", "rb")
-file_name = "qTables/variedOpponent/qTable_maxPoints_100_total_episodes_100.pickle"
+file_name = "../qTables/variedOpponent/qTable_maxPoints_100_total_episodes_100.pickle"
 trainedQTableFile = open(file_name, "rb")
 maxAttempts = 100  # max number of attempts allowed to find a balanced agent
 maxRolloutLength = (

@@ -23,7 +23,7 @@ discountFactor = 0.9  # how much to pay attention to future changes (increase fo
 epsilon = 1  # how frequently to take the 'best' instead of random actions (increase for faster convergence, decrease for more exploration)
 epsilonDecay = 0.001  # how quickly to decrease epsilon (increase for faster convergence, decrease for more exploration)
 random.seed(1)  # Ensures a consistent training result
-output_file_folder = "qTables/variedOpponent/"
+output_file_folder = "../qTables/variedOpponent/"
 output_file_name = (
     "qTable_"
     + "maxPoints_"
