@@ -7,8 +7,9 @@ numGamesPerMonster = (
     1000  # Using one thousand instead of one million discussed in Chapter 10
 )
 
-MAX_POINTS = 100
+MAX_POINTS = 125
 PRINT_MONSTER = False
+RANDOM_OPPONENT = False
 
 
 # Every state is a monster. Typically we would have a separate environment representation, but here the state encompasses all the info in the environment
@@ -134,9 +135,7 @@ def WeakMonster():
 def GlassCannon():
     return State(20, 0, 50, 50)
 
-
-# Run one game of this monster against an opponent monster
-def RunGame(monster):
+def get_random_opponent():
     num = random.random()
     if num < 0.25:
         if PRINT_MONSTER:
@@ -154,8 +153,12 @@ def RunGame(monster):
         if PRINT_MONSTER:
             print("GlassCannon")
         opponent_monster = GlassCannon()
+    return opponent_monster
 
+# Run one game of this monster against an opponent monster
+def RunGame(monster):
     monster1 = monster
+    opponent_monster = get_random_opponent() if RANDOM_OPPONENT else BalancedMonster()
     monster2 = opponent_monster
 
     # Boolean for who goes first

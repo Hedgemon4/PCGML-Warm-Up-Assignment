@@ -1,5 +1,10 @@
 # PCGML WarmUp Assignment - Balanced Monster Generation
 
+## Write Up Location
+
+- My write-up and generated content is located [here](generated_content/policy_network_100_points).
+- I generated some other content that you can look at if you want, but it is unlabeled. It is located in the [generated content](generated_content) folder.
+
 ## Running Modified Tabular Code
 
 - The original code for the example is located in the original code folder.
@@ -8,13 +13,15 @@
   - Changes to the hyperparameters.
   - Implementing a max points system, so the points of our generated monster can only go so high.
   - The monster now does not only fight the balanced monster, but all four monsters mentioned in the textbook.
+  - To change the number of points allowed by the agents, you need to change the value in the [qTabular MDP](qTabular/MDP.py) file.
 
 ## Running Modified Q-Learning Code
 
-- I also modified the original code to implement DQN. Instead of using a tabular Q, we use neural networks in PyTorch to approximate the Q function.
+- I also modified the original code to implement DQN. Instead of using a tabular Q, we use neural networks in PyTorch to approximate the Q function. The code is located in the [qLearning](qLearning) folder.
 - In addition to pickle, some other packages are needed. These can be installed with pip in a virtual environment with the following command `python -m pip install -r requirements.txt`.
 - Some packages may be platform dependent (I did this on a Mac). If the code does not run after installing the packages, please use the commands that PyTorch gives on [this](https://pytorch.org/get-started/locally/) page to install PyTorch for your system. You will not need pickle for this portion. 
 - At the top of the [Generate Monster](qLearning/generateMonsterFromNetwork.py) file, there is a variable to change the trained network being used to generate the content. Changing that line to any of the networks I included in the [networks](networks) folder will allow you to generate a monster using that network. The generation works the same as before, except that it uses the model to choose what action to take, and I removed the `doneThreshold` condition because my network does not produce values in the same range as the tabular version.
+- The modified Q-learning code also includes all the changes in the modified tabular code.
 
 ## Old Instructions
 
