@@ -22,6 +22,7 @@
 - Some packages may be platform dependent (I did this on a Mac). If the code does not run after installing the packages, please use the commands that PyTorch gives on [this](https://pytorch.org/get-started/locally/) page to install PyTorch for your system. You will not need pickle for this portion. 
 - At the top of the [Generate Monster](qLearning/generateMonsterFromNetwork.py) file, there is a variable to change the trained network being used to generate the content. Changing that line to any of the networks I included in the [networks](networks) folder will allow you to generate a monster using that network. The generation works the same as before, except that it uses the model to choose what action to take, and I removed the `doneThreshold` condition because my network does not produce values in the same range as the tabular version.
 - The modified Q-learning code also includes all the changes in the modified tabular code.
+- The Q Learning code uses the same MDP as the tabular agent. The training file is now [deepQTrain](qLearning/deepQTrain.py) and this is the [generate monster](qLearning/generateMonsterFromNetwork.py) file.
 
 ## Old Instructions
 
