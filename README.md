@@ -2,7 +2,7 @@
 
 ## Write Up Location
 
-- My write-up and generated content is located [here](generated_content/policy_network_100_points).
+- My write-up and generated content is located [here](generated_content). The write up is in this folder, and the content sorted into good and bad is located in the [policy network 100 points](generated_content/policy_network_100_points) and [policy network 125 points](generated_content/policy_network_125_points) folders.
 - I generated some other content that you can look at if you want, but it is unlabeled. It is located in the [generated content](generated_content) folder.
 
 ## Running Modified Tabular Code
